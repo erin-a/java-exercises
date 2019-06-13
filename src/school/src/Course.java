@@ -16,6 +16,20 @@ public class Course {
 // prerequisites ArrayList<Course> (where Course is an object)
 // location - String
 
+    // misc note on method return types/values: you have to declare the data type of the object a method will return, if the method will not return a value, you declare it void instead of the data type
+
+// behaviors - each will need an access modifiers (public/private), return type (void or data type), and arguments (input parameters)
+// *add a student - public (so maybe a student or teacher class could add the class), void, Student
+// record a grade discussion - a student can earn a grade, a teacher can assign a grade?
+// *drop a student - public (so maybe a student or teacher class could add the class), void, Student
+// *print roster - will display information, not retrieve anything, void, public
+
+
+
+
+
+
+
 
     private String name;
     private String number;
@@ -32,6 +46,36 @@ public class Course {
         this.name = number;
         this.roster = new ArrayList<>(); // this is how you initialize this to a default value, in this case we are call the ArrayList constructor to make a brand new empty arry list so when we add students, the array list is ready to accept them.
     }
+
+    public boolean addStudent (Student_s) { // was a void, but changed to bool since it's possible to not be able to be added to the class
+        // to add a student you add them to the roster
+        // the roster is an array list initialized in our construtor
+        // so we need to grab it this.roster
+        // then check list of available of things to do - select add(Student_s)
+        // this.roster.add(s);
+        // potential problems: adding same student multiple times
+        // so we can check if student is already on the list by looping through the arraylist, use an if statement, or a combination of the two.
+        // let's try a method built into an array list - found my typing into intelliJ and looking for options
+        if (!this.roster.contains(s)) ;
+        {// the ! means not, so this is saying if the roster does NOT contain this student,
+            this.roster.add(s); // then add the student
+            return true; // added when we changed from void to boolean
+        }
+        return false; // so you can alert the student if they weren't added
+    }
+
+    public void dropStudent(Student s) {
+        this.roster.remove(s);
+    }
+
+    public void printRoster() {
+        // loop
+        for(int i - 0; i < this.roster.size(); i++) {
+            System.out.println(this.roster.get(i)); //this.roster.get(i) is grabbing the student at that index. then we print out the student at that index, which calls the toString - if we don't set it, it will call the toString for the class
+        }
+    }
+
+
 
     //short cut for creating getters and setters:
     // go to Code menu in the nav bar
@@ -59,7 +103,20 @@ public class Course {
     public ArrayList<Student> getRoster() {
         return roster;
     }
+
+    public static void main(String[] args) {
+        Course lc101 = new Course("LaunchCode", "LC101");
+        Student s = new Student ("Keanu Reeves"); // creates a new student, you have to provide any 1 of the constructors, so you can pass in just a name or a lot of details
+        Student s2 = new Student ("Lawrence Fishbourne");
+        Student s3 - new Student ("Carrie Moss");
+        lc101.addStudent(s);// adds them to the course, start with name of course, then dot to give you a list to choose from
+        lc101.addStudent(s2);
+        lc101.addStudent(s3);
+        lc101.printRoster();
+    }
 }
+
+
 
 // setter implies you're swapping the entire variable, not just modifying it a little bit
 // setters can include things like validation and arithmetic and other manipulations
